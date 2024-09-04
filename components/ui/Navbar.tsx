@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useGSAP } from "@gsap/react"; // <-- import the hook from our React package
 import gsap from "gsap"; // <-- import GSAP
@@ -16,29 +16,61 @@ const Newnav = () => {
   const { contextSafe } = useGSAP(
     () => {
       console.log("creating timeline");
-      tl.current = gsap.timeline({ paused: false }).to(".square", {
-        backgroundColor: isToggled ? "red" : "purple",
-        duration: 1,
-        x: "50%",
+      gsap.set(".square", {
+        clipPath: "ellipse(56% 0% at 50% 100%)",
       });
-      isToggled ? tl.current.resume() : tl.current.paused(true);
+      tl.current = gsap
+        .timeline({ paused: true })
+        .to(".square", {
+          display: "block",
+        })
+        .to(
+          ".square",
+          {
+            backgroundColor: isToggled ? "red" : "purple",
+            duration: 1,
+            display: "block",
+          },
+          0.1
+        )
+        .to(".square", {
+          clipPath: "ellipse(56% 50% at 50% 100%)",
+
+          duration: 0.3,
+        })
+        // .to(
+        //   ".square",
+        //   {
+        //     clipPath: "ellipse(100% 100% at 50% 100%)",
+        //     //ease: "power3.out",
+        //     duration: 0.3,
+        //   },
+        //   ">"
+        // )
+        .to(
+          ".square",
+          {
+            clipPath: "ellipse(100% 100% at 50% 50%)",
+            ease: "power3.inOut",
+            duration: 0.5,
+          },
+          ">"
+        );
 
       //tl.current.reversed(!tl.current.reversed());
     },
     {
       scope: container,
-
       revertOnUpdate: false,
     }
   ); // we can pass in a config object as the 1st parameter to make scoping simple
-  const toggleTimeline = contextSafe(() => {
-    console.log("toggling");
-
-    tl.current.resume();
-    isToggled && tl.current.reversed(!tl.current.reversed());
-  });
+  const toggleTimeline = contextSafe(() => {});
   // ✅ wrapped in contextSafe() - animation will be cleaned up correctly
   // selector text is scoped properly to the container.
+
+  useEffect(() => {
+    isToggled ? tl.current.play() : tl.current.reverse();
+  }, [isToggled]);
 
   return (
     <nav
@@ -48,7 +80,7 @@ const Newnav = () => {
       <span>tarik sørensen</span>
       <div className="flex gap-1">
         <Button
-          className={`z-20 ${
+          className={`z-70 ${
             isToggled ? "text-black border-black" : "text-white border-white"
           } `}
           size={"long"}
@@ -71,7 +103,7 @@ const Newnav = () => {
           =
         </Button>
       </div>
-      <div className="absolute square  w-2/4 z-40 bg-purple-400 h-screen"></div>
+      <div className="absolute square hidden  w-full top-0 left-0 bg-purple-400 h-screen"></div>
     </nav>
   );
 };
