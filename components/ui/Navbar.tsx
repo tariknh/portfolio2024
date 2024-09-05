@@ -4,7 +4,15 @@ import { useEffect, useRef, useState } from "react";
 
 import { useGSAP } from "@gsap/react"; // <-- import the hook from our React package
 import gsap from "gsap"; // <-- import GSAP
+import Link from "next/link";
 gsap.registerPlugin(useGSAP);
+
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
+];
 
 const Newnav = () => {
   const [isToggled, setToggle] = useState(false);
@@ -15,49 +23,50 @@ const Newnav = () => {
 
   const { contextSafe } = useGSAP(
     () => {
-      console.log("creating timeline");
-      gsap.set(".square", {
-        clipPath: "ellipse(56% 0% at 50% 100%)",
-      });
+      const start = "M 0 100 V 50 Q 50 0 100 50 V 100 z";
+      const end = "M 0 100 V 0 Q 50 0 100 0 V 100 z";
+
       tl.current = gsap
-        .timeline({ paused: true })
-        .to(".square", {
-          display: "block",
+        .timeline({ paused: false })
+        .to(".path", {
+          attr: { d: start },
+          ease: "Power2.easeIn",
+          duration: 0.8,
         })
-        .to(
-          ".square",
+        .to(".path", {
+          attr: { d: end },
+          ease: "Power2.easeOut",
+          duration: 0.4,
+        })
+        .to(".navInner", {
+          display: "grid",
+        })
+        .fromTo(
+          ".navLinks",
           {
-            backgroundColor: isToggled ? "red" : "purple",
-            duration: 1,
+            y: 80,
+            display: "none",
+          },
+          {
             display: "block",
-          },
-          0.1
+            y: 0,
+            stagger: 0.1,
+            ease: "Power2.easeOut",
+          }
         )
-        .to(".square", {
-          clipPath: "ellipse(56% 50% at 50% 100%)",
-
-          duration: 0.3,
-        })
-        // .to(
-        //   ".square",
-        //   {
-        //     clipPath: "ellipse(100% 100% at 50% 100%)",
-        //     //ease: "power3.out",
-        //     duration: 0.3,
-        //   },
-        //   ">"
-        // )
-        .to(
-          ".square",
+        .fromTo(
+          ".contactMe",
           {
-            clipPath: "ellipse(100% 100% at 50% 50%)",
-            ease: "power3.inOut",
-            duration: 0.5,
+            y: 80,
+            display: "none",
           },
-          ">"
+          {
+            display: "flex",
+            y: 0,
+            stagger: 0.1,
+            ease: "Power2.easeOut",
+          }
         );
-
-      //tl.current.reversed(!tl.current.reversed());
     },
     {
       scope: container,
@@ -103,7 +112,44 @@ const Newnav = () => {
           =
         </Button>
       </div>
-      <div className="absolute square hidden  w-full top-0 left-0 bg-purple-400 h-screen"></div>
+      {/* {<div className="absolute square hidden  w-full top-0 left-0 bg-purple-400 h-screen"></div>} */}
+      <div className="h-screen fixed left-0 w-full top-0 text-white ">
+        <div className="navInner p-12 fixed text-black z-[90] hidden h-full text-6xl grid-cols-2 w-full justify-center items-center">
+          <div className="h-full flex flex-col self-end gap-4 text-6xl font-bold">
+            <span className="text-sm contactMe text-blue-700 uppercase tracking-widest">
+              Contact me!
+            </span>
+            <span className="contactMe">tarik@tarik.no</span>
+            <span className="contactMe">+47 951 89 711</span>
+          </div>
+          <div className="flex col-start-2 justify-center flex-col h-full gap-4 text-8xl font-bold">
+            {navItems.map((item, i) => {
+              return (
+                <div className="h-[6.5rem] overflow-hidden" key={i}>
+                  <Link className="navLinks" href={item.href}>
+                    {item.name}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <svg
+          className="transition absolute top-0 left-0 z-10 "
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            className="path"
+            stroke="#000"
+            stroke-width="2px"
+            dur="10s"
+            fill="white"
+            vector-effect="non-scaling-stroke"
+            d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
+          />
+        </svg>
+      </div>
     </nav>
   );
 };
