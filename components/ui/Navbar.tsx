@@ -14,7 +14,7 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
-const Newnav = () => {
+const Navbar = () => {
   const [isToggled, setToggle] = useState(false);
 
   const container = useRef<HTMLDivElement | null>(null);
@@ -28,6 +28,9 @@ const Newnav = () => {
 
       tl.current = gsap
         .timeline({ paused: false })
+        .to(".pathContainer", {
+          display: "block",
+        })
         .to(".path", {
           attr: { d: start },
           ease: "Power2.easeIn",
@@ -44,12 +47,12 @@ const Newnav = () => {
         .fromTo(
           ".navLinks",
           {
-            y: 80,
+            yPercent: 80,
             display: "none",
           },
           {
             display: "block",
-            y: 0,
+            yPercent: 0,
             stagger: 0.1,
             ease: "Power2.easeOut",
           }
@@ -57,11 +60,18 @@ const Newnav = () => {
         .fromTo(
           ".contactMe",
           {
-            y: 80,
-            display: "none",
+            visibility: "hidden",
           },
           {
-            display: "flex",
+            visibility: "visible",
+          }
+        )
+        .fromTo(
+          ".contactMe",
+          {
+            y: 50,
+          },
+          {
             y: 0,
             stagger: 0.1,
             ease: "Power2.easeOut",
@@ -84,12 +94,12 @@ const Newnav = () => {
   return (
     <nav
       ref={container}
-      className="h-24 flex justify-between fixed w-full text-white items-center p-4"
+      className="h-24 flex z-50 justify-between fixed w-full text-white items-center p-4"
     >
-      <span>tarik sørensen</span>
+      <span className="z-50 text-2xl">tarik sørensen</span>
       <div className="flex gap-1">
         <Button
-          className={`z-70 ${
+          className={`z-50 ${
             isToggled ? "text-black border-black" : "text-white border-white"
           } `}
           size={"long"}
@@ -99,7 +109,7 @@ const Newnav = () => {
         </Button>
         <Button
           ref={goodRef}
-          className={`z-20 ${
+          className={`z-50 ${
             isToggled ? "text-black border-black" : "text-white border-white"
           } `}
           onClick={() => {
@@ -113,19 +123,25 @@ const Newnav = () => {
         </Button>
       </div>
       {/* {<div className="absolute square hidden  w-full top-0 left-0 bg-purple-400 h-screen"></div>} */}
-      <div className="h-screen fixed left-0 w-full top-0 text-white ">
-        <div className="navInner p-12 fixed text-black z-[90] hidden h-full text-6xl grid-cols-2 w-full justify-center items-center">
-          <div className="h-full flex flex-col self-end gap-4 text-6xl font-bold">
-            <span className="text-sm contactMe text-blue-700 uppercase tracking-widest">
+      <div className="h-screen text-accent pathContainer hidden fixed left-0 w-full top-0 ">
+        <div className="navInner p-12 fixed  z-[90] hidden h-full md:text-6xl grid-cols-2 w-full justify-center items-center">
+          <div className="h-full flex overflow-hidden place-content-end flex-col text-primary self-end gap-4 md:text-6xl font-bold">
+            <span className="text-sm h-fit contactMe overflow-hidden text-accent uppercase tracking-widest">
               Contact me!
             </span>
-            <span className="contactMe">tarik@tarik.no</span>
-            <span className="contactMe">+47 951 89 711</span>
+
+            <span className="contactMe h-fit overflow-hidden">
+              tarik@tarik.no
+            </span>
+
+            <span className="contactMe h-fit overflow-hidden">
+              +47 951 89 711
+            </span>
           </div>
-          <div className="flex col-start-2 justify-center flex-col h-full gap-4 text-8xl font-bold">
+          <div className="flex col-start-2 overflow-hidden justify-center flex-col min-h-full gap-4 text-3xl md:text-8xl font-bold">
             {navItems.map((item, i) => {
               return (
-                <div className="h-[6.5rem] overflow-hidden" key={i}>
+                <div className="md:h-[6.5rem] h-fit overflow-hidden" key={i}>
                   <Link className="navLinks" href={item.href}>
                     {item.name}
                   </Link>
@@ -135,14 +151,12 @@ const Newnav = () => {
           </div>
         </div>
         <svg
-          className="transition absolute top-0 left-0 z-10 "
+          className="transition pathContainer hidden absolute top-0 h-screen w-full left-0 z-10 "
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
           <path
             className="path"
-            stroke="#000"
-            stroke-width="2px"
             dur="10s"
             fill="white"
             vector-effect="non-scaling-stroke"
@@ -154,4 +168,4 @@ const Newnav = () => {
   );
 };
 
-export default Newnav;
+export default Navbar;

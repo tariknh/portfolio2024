@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -4;
+  --gradient-color-1: #53df83;
+  --gradient-color-2: #47d2e9;
+  --gradient-color-3: #3f3f3f;
+  --gradient-color-4: #eeeeee;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -23,6 +34,13 @@
 }
 
 @layer base {
+  .font-outline-2 {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px black;
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -30,13 +48,13 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 0, 0%, 7%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
+    --accent: 234, 84%, 62%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;

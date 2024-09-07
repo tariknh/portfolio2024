@@ -1,43 +1,34 @@
 "use client";
-import { Scroll, ScrollControls, Text } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
 
-const words = ["Hello", "World", "React", "Three"];
+import { motion, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import { Gradient } from "./Gradient.js";
 
-const Items = ({ w = 0.7, gap = 0.15 }) => {
-  const { width } = useThree((state) => state.viewport);
-  const xW = w + gap;
+const Hero = ({ scrollYProgress }: any) => {
+  useEffect(() => {
+    // Create your instance
+    const gradient = new Gradient();
+
+    // Call `initGradient` with the selector to your canvas
+    gradient.initGradient("#gradient-canvas");
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
   return (
-    <ScrollControls distance={0.7} pages={2} damping={0.1}>
-      <Scroll>
-        {
-          words.map((word, index) => <Item key={index} word={word} index={index}  />) /* prettier-ignore */
-        }
-      </Scroll>
-    </ScrollControls>
-  );
-};
-
-const Item = ({ index, word, ...props }: any) => {
-  return (
-    <Text
-      position={[0, -15 * index, 0]}
-      key={index}
-      fontSize={15}
-      color={"black"}
+    <motion.div
+      style={{ scale, rotate }}
+      className="h-screen sticky -z-10 top-0 place-content-center items-center content-center w-full flex"
     >
-      {word}
-    </Text>
-  );
-};
-
-const Hero = () => {
-  return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
-      <fog attach="fog" args={["#202025", 0, 80]} />
-      <Items />
-      {/* <TrackballControls /> */}
-    </Canvas>
+      <div className="place-self-center flex flex-col gap-2 text-center text-8xl font-extrabold self-center w-full">
+        <h2 className="md:text-4xl text-lg font-inter text-white font-outline-2">
+          CREATIVE DEVELOPER
+        </h2>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl">TARIK SØRENSEN</h1>
+      </div>
+      <canvas id="gradient-canvas" data-transition-in />
+    </motion.div>
   );
 };
 
