@@ -96,7 +96,7 @@ const Navbar = () => {
       ref={container}
       className="h-24 flex z-50 justify-between fixed w-full text-white items-center p-4"
     >
-      <span className="z-50 text-2xl">tarik sørensen</span>
+      <span className="z-50 md:text-2xl">tarik sørensen</span>
       <div className="flex gap-1">
         <Button
           className={`z-50 ${

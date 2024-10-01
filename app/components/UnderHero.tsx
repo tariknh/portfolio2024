@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 const Project = () => {
   return (
-    <div className="flex md:justify-between w-full h-full gap-5 text-white">
+    <div className="flex flex-col-reverse sm:flex-row md:justify-between w-full h-full gap-5 text-white">
       <div className="max-w-lg md:max-w-none flex flex-col justify-center">
         <h2 className="text-xl md:text-6xl font-bold">Lofothuset</h2>
         <h2 className="text-xs font-thin text-end">
@@ -16,7 +16,7 @@ const Project = () => {
         </Button> */}
         <Hoverbutton />
       </div>
-      <div className="rounded-lg basis-2/4 overflow-hidden relative w-full">
+      <div className="h-full min-h-72 rounded-lg overflow-hidden relative w-full">
         <Image
           className="aspect-video h-full"
           src="/projects/lofothuset.png"
@@ -32,7 +32,7 @@ const UnderHero = ({ scrollYProgress }: any) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
   return (
-    <div className="py-[20vh] bg-primary grid grid-rows-6">
+    <div className=" bg-primary grid-cols-1 grid grid-rows-6">
       <motion.span
         animate={{
           y: isInView ? "0%" : "50%",
@@ -40,11 +40,11 @@ const UnderHero = ({ scrollYProgress }: any) => {
           transition: { duration: 0.5, ease: "easeInOut" },
         }}
         ref={ref}
-        className="justify-self-center row-start-2 text-[10vw] text-center w-full text-white font-bold"
+        className="justify-self-center row-start-2 text-7xl md:text-8xl lg:text-9xl text-center w-full text-white font-bold"
       >
         RECENT <span className="font-outline-2 text-primary">WORK</span>
       </motion.span>
-      <div className="row-start-4 row-span-2 px-40">
+      <div className="sm:row-start-4 row-span-2 px-5 sm:px-40">
         <Project />
       </div>
     </div>
