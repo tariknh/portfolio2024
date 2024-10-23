@@ -3,6 +3,7 @@ import { useScroll } from "framer-motion";
 import { useRef } from "react";
 import Hero from "./components/Hero";
 import UnderHero from "./components/UnderHero";
+import Herov2 from "./components/Herov2";
 
 export default function Home() {
   const container = useRef(null);
@@ -13,8 +14,8 @@ export default function Home() {
     offset: ["start start", "end end"],
   });
   return (
-    <main className="h-[200vh] relative">
-      <Hero scrollYProgress={scrollYProgress} />
+    <main className="relative">
+      <Herov2/>
       <UnderHero scrollYProgress={scrollYProgress} />
     </main>
   );

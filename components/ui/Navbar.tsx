@@ -57,19 +57,11 @@ const Navbar = () => {
             ease: "Power2.easeOut",
           }
         )
+       
         .fromTo(
           ".contactMe",
           {
-            visibility: "hidden",
-          },
-          {
-            visibility: "visible",
-          }
-        )
-        .fromTo(
-          ".contactMe",
-          {
-            y: 50,
+            y: 100,
           },
           {
             y: 0,
@@ -126,22 +118,27 @@ const Navbar = () => {
       <div className="h-screen text-accent pathContainer hidden fixed left-0 w-full top-0 ">
         <div className="navInner p-12 fixed  z-[90] hidden h-full md:text-6xl grid-cols-2 w-full justify-center items-center">
           <div className="h-full flex overflow-hidden place-content-end flex-col text-primary self-end gap-4 md:text-6xl font-bold">
+            <div className="h-[2rem] flex overflow-hidden">
+
             <span className="text-sm h-fit contactMe overflow-hidden text-accent uppercase tracking-widest">
               Contact me!
             </span>
-
+            </div>
+            <div className="h-[2rem] flex overflow-hidden">
             <span className="contactMe h-fit overflow-hidden">
               tarik@tarik.no
             </span>
-
+            </div>
+            <div className="h-[2rem] flex overflow-hidden">
             <span className="contactMe h-fit overflow-hidden">
               +47 951 89 711
             </span>
+            </div>
           </div>
           <div className="flex col-start-2 overflow-hidden justify-center flex-col min-h-full gap-4 text-3xl md:text-8xl font-bold">
             {navItems.map((item, i) => {
               return (
-                <div className="md:h-[6.5rem] h-fit overflow-hidden" key={i}>
+                <div className="md:h-[6.5rem] h-[2.5rem] overflow-hidden" key={i}>
                   <Link className="navLinks" href={item.href}>
                     {item.name}
                   </Link>
