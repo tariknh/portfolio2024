@@ -6,21 +6,23 @@ import { Button } from "./button";
 
 gsap.registerPlugin(useGSAP);
 
-export default function App() {
+import { ReactNode } from "react";
+
+export default function HoverButton({ children }: { children: ReactNode }) {
   const button: any = useRef(null);
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLButtonElement>(null);
   const clipRef = useRef<HTMLDivElement>(null);
 
   const durationSetting = 0.4;
   const easeSetting = "power2.out";
 
-  const getPercentTop = (el: HTMLDivElement, e: MouseEvent) => {
+  const getPercentTop = (el: HTMLButtonElement, e: MouseEvent) => {
     const elTop = el.getBoundingClientRect().top;
     const mouseTop = e.clientY - elTop;
     return (mouseTop / el.offsetHeight) * 100;
   };
 
-  const getPercentLeft = (el: HTMLDivElement, e: MouseEvent) => {
+  const getPercentLeft = (el: HTMLButtonElement, e: MouseEvent) => {
     const elLeft = el.getBoundingClientRect().left;
     const mouseLeft = e.clientX - elLeft;
     return (mouseLeft / el.offsetWidth) * 100;
@@ -73,7 +75,7 @@ export default function App() {
   return (
     <Button
       data-btn="wrap"
-      className="w-40"
+      className="w-40 no-underline hover:no-underline border-white bg-blend-difference"
       size={"short"}
       variant={"outline"}
       ref={wrapRef}
@@ -96,10 +98,10 @@ export default function App() {
         }}
       >
         {/* Content inside the clip */}
-        <span className="text-background!important">View case</span>
+        <span className="text-background!important">{children}</span>
       </div>
       {/* Wrap button content */}
-      View case
+      {children}
     </Button>
   );
 }

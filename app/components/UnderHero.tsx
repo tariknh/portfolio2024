@@ -69,7 +69,7 @@ const Project = () => {
         {/* <Button className="w-40" size={"short"} variant={"outline"}>
           View case
         </Button> */}
-        <Hoverbutton />
+        <Hoverbutton>View case</Hoverbutton>
       </div>
       <div
         ref={right}

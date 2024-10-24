@@ -108,3 +108,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+.char {
+  transform: translateY(315px);
+  transition: transform 1s;
+}
+.heroSubWord {
+  transform: translateY(315px);
+  transition: transform 1s;
+}

@@ -1,9 +1,8 @@
 "use client";
 import { useScroll } from "framer-motion";
 import { useRef } from "react";
-import Hero from "./components/Hero";
-import UnderHero from "./components/UnderHero";
 import Herov2 from "./components/Herov2";
+import UnderHero from "./components/UnderHero";
 
 export default function Home() {
   const container = useRef(null);
@@ -15,7 +14,7 @@ export default function Home() {
   });
   return (
     <main className="relative">
-      <Herov2/>
+      <Herov2 />
       <UnderHero scrollYProgress={scrollYProgress} />
     </main>
   );

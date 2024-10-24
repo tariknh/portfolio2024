@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react"; // <-- import the hook from our React package
 import gsap from "gsap"; // <-- import GSAP
 import Link from "next/link";
+import HoverButton from "./Hoverbutton";
 gsap.registerPlugin(useGSAP);
 
 const navItems = [
@@ -23,6 +24,9 @@ const Navbar = () => {
 
   const { contextSafe } = useGSAP(
     () => {
+      tl.current = gsap.timeline({
+        paused: true, // Ensure the timeline doesn't run immediately
+      });
       const start = "M 0 100 V 50 Q 50 0 100 50 V 100 z";
       const end = "M 0 100 V 0 Q 50 0 100 0 V 100 z";
 
@@ -86,24 +90,15 @@ const Navbar = () => {
   return (
     <nav
       ref={container}
-      className="h-24 flex z-50 justify-between fixed w-full text-white items-center p-4"
+      className={`h-24 flex bg-blend-difference z-50 justify-between fixed w-full text-white items-center p-4 
+      `}
     >
-      <span className="z-50 md:text-2xl">tarik sørensen</span>
-      <div className="flex gap-1">
-        <Button
-          className={`z-50 ${
-            isToggled ? "text-black border-black" : "text-white border-white"
-          } `}
-          size={"long"}
-          variant={"outline"}
-        >
-          Get in touch
-        </Button>
+      <span className="z-50  md:text-2xl">tarik sørensen</span>
+      <div className="z-[1000000] flex gap-1 ">
+        <HoverButton>Get in touch</HoverButton>
         <Button
           ref={goodRef}
-          className={`z-50 ${
-            isToggled ? "text-black border-black" : "text-white border-white"
-          } `}
+          className={`z-[1000000]  `}
           onClick={() => {
             toggleTimeline();
             setToggle(!isToggled);
@@ -114,8 +109,11 @@ const Navbar = () => {
           =
         </Button>
       </div>
+
       {/* {<div className="absolute square hidden  w-full top-0 left-0 bg-purple-400 h-screen"></div>} */}
-      <div className="h-screen text-primary pathContainer hidden fixed left-0 w-full top-0 ">
+      <div
+        className={`h-screen text-primary pathContainer hidden fixed left-0 w-full top-0 `}
+      >
         <div className="navInner p-12 fixed  z-[90] hidden h-full md:text-6xl grid-cols-3 w-full justify-center items-center">
           <div className="h-full col-start-2 col-span-2 flex overflow-hidden place-content-end flex-col text-primary self-end md:text-6xl font-bold">
             <div className="h-[2rem] flex overflow-hidden">
