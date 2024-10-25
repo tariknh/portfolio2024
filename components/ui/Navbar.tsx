@@ -98,7 +98,7 @@ const Navbar = () => {
         <HoverButton>Get in touch</HoverButton>
         <Button
           ref={goodRef}
-          className={`z-[1000000]  `}
+          className={`z-[1000000]`}
           onClick={() => {
             toggleTimeline();
             setToggle(!isToggled);
