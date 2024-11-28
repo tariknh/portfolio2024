@@ -102,7 +102,7 @@ const UnderHero = ({ scrollYProgress }: any) => {
       >
         RECENT <span className="font-outline-2-white text-primary">WORK</span>
       </motion.span>
-      <div className="flex gap-40 my-20 flex-col px-5 md:px-20">
+      <div className="flex gap-40 my-20 items-center flex-col px-5 md:px-20">
         <Project />
         <Project />
         <Project />
