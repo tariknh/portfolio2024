@@ -9,7 +9,7 @@ const SPRING_CONFIG = { damping: 80, stiffness: 600 };
 type MagneticButtonType = {
   children: React.ReactNode;
   distance?: number;
-  className?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  className?: string;
 };
 
 const MagneticButton: React.FC<MagneticButtonType> = ({
@@ -55,7 +55,7 @@ const MagneticButton: React.FC<MagneticButtonType> = ({
 
   return (
     <motion.div
-      className={cn("bg-black", className)}
+      className={cn(className, "cursor-pointer")}
       ref={ref}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
