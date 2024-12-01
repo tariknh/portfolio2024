@@ -3,6 +3,7 @@ import { useScroll } from "framer-motion";
 import { useRef } from "react";
 import Footer from "./components/Footer";
 import Herov2 from "./components/Herov2";
+import Services from "./components/Services";
 import UnderHero from "./components/UnderHero";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="relative">
       <Herov2 />
       <UnderHero scrollYProgress={scrollYProgress} />
+      <Services />
       <Footer />
     </main>
   );
