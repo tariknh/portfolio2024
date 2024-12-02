@@ -59,7 +59,7 @@ const Services = () => {
               id={`card-${index}`}
               frontSrc="/card-front.png"
               frontAlt="Card Image"
-              backText="Your card details appear here"
+              backText="Your card details will appear here"
             />
           )),
         ]}
