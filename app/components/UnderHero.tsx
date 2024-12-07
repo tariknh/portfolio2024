@@ -1,10 +1,11 @@
 import Hoverbutton from "@/components/ui/Hoverbutton";
 import { useGSAP } from "@gsap/react"; // <-- import the hook from our React package
+import { Canvas } from "@react-three/fiber";
 import { motion, useInView } from "framer-motion";
 import gsap from "gsap"; // <-- import GSAP
 import { ScrollTrigger } from "gsap/all";
-import Image from "next/image";
 import { useRef } from "react";
+import RevealImage from "../hooks/RevealImage";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,12 +76,15 @@ const Project = () => {
         ref={right}
         className="right h-40 md:min-h-72 lg:min-h-[40rem] md:min-w-[16rem] rounded-lg overflow-hidden relative w-full"
       >
-        <Image
+        <Canvas>
+          <RevealImage imageTexture={"/projects/lofothuset.png"} />
+        </Canvas>
+        {/* <Image
           className="aspect-video object-cover fit h-full"
-          src="/projects/lofothuset.png"
+          src={lofothuset}
           alt="lofothuset"
           fill
-        />
+        /> */}
       </div>
     </div>
   );

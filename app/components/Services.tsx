@@ -38,7 +38,7 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-primary">
       <div ref={container} className="text-background   flex-col px-5 md:px-20">
-        <div className=" overflow-hidden p-2 border-2 border-red-500">
+        <div className=" overflow-hidden p-2 ">
           <motion.h2
             initial={{ opacity: 0, x: -50 }}
             whileInView="onscreen"
@@ -47,7 +47,7 @@ const Services = () => {
             WHAT I
           </motion.h2>
         </div>
-        <div className=" overflow-hidden border-2 border-red-500">
+        <div className=" overflow-hidden  ">
           <motion.h2 initial={{ y: -80 }} className="text-5xl dobest">
             DO BEST
           </motion.h2>
