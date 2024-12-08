@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import Image from "next/image";
 import SplitType from "split-type";
 import { useMounted } from "../hooks/useMounted";
 const Herov2 = () => {
@@ -31,7 +30,7 @@ const Herov2 = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="h-[50vh] p-8 overflow-hidden flex items-end justify-between">
+      <div className="h-screen p-8 overflow-hidden flex items-end justify-between">
         <h1
           id="heroTitle"
           className="md:leading-[12rem] align-top font-bold text-7xl md:text-[15rem]"
@@ -44,14 +43,6 @@ const Herov2 = () => {
         >
           is a creative web developer based in Norway
         </h2>
-      </div>
-      <div className="h-screen relative">
-        <Image
-          alt="Hero image"
-          src={"/projects/lofothuset.png"}
-          fill
-          className="object-cover"
-        />
       </div>
     </div>
   );

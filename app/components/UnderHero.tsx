@@ -5,15 +5,17 @@ import { motion, useInView } from "framer-motion";
 import gsap from "gsap"; // <-- import GSAP
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import { Mesh } from "three";
 import RevealImage from "../hooks/RevealImage";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 const Project = () => {
   const container = useRef<HTMLDivElement | null>(null);
+
   const goodRef = useRef<HTMLButtonElement | null>(null);
   const left = useRef<HTMLDivElement | null>(null);
-  const right = useRef<HTMLDivElement | null>(null);
+  const right = useRef<Mesh | null>(null);
 
   useGSAP(
     () => {
@@ -22,7 +24,7 @@ const Project = () => {
           scrollTrigger: {
             trigger: left.current,
             markers: true,
-            scrub: true,
+            scrub: 0.5,
             start: "top bottom",
             end: "+=600",
           },
@@ -30,12 +32,13 @@ const Project = () => {
         .fromTo(
           left.current,
           {
-            translateX: "-200%",
-            rotate: "-50deg",
+            xPercent: "-200",
+            rotate: "-50",
           },
           {
-            translateX: "0%",
-            rotate: "0deg",
+            xPercent: "0",
+            rotate: "0",
+            ease: "power2.out",
           }
         )
         .fromTo(
@@ -61,7 +64,7 @@ const Project = () => {
     >
       <div
         ref={left}
-        className="left max-w-lg md:max-w-none gap-2 flex flex-col justify-center"
+        className="left will-change-transform max-w-lg md:max-w-none gap-2 flex flex-col justify-center"
       >
         <h2 className="text-xl md:text-6xl font-bold">Lofothuset</h2>
         <h2 className="text-xs text-pretty font-thin mb-6 text-zinc-400 text-end">
@@ -72,12 +75,13 @@ const Project = () => {
         </Button> */}
         <Hoverbutton>View case</Hoverbutton>
       </div>
-      <div
-        ref={right}
-        className="right h-40 md:min-h-72 lg:min-h-[40rem] md:min-w-[16rem] rounded-lg overflow-hidden relative w-full"
-      >
-        <Canvas>
-          <RevealImage imageTexture={"/projects/lofothuset.png"} />
+      <div className="right h-40 md:min-h-72 lg:min-h-[40rem] md:min-w-[16rem] rounded-lg overflow-hidden relative w-full">
+        <Canvas className="overflow-visible absolute w-full">
+          <RevealImage
+            meshRef={right}
+            positionX={0}
+            imageTexture="/projects/lofothuset.png"
+          />
         </Canvas>
         {/* <Image
           className="aspect-video object-cover fit h-full"
@@ -102,10 +106,11 @@ const UnderHero = ({ scrollYProgress }: any) => {
           transition: { duration: 0.5, ease: "easeInOut" },
         }}
         ref={ref}
-        className="justify-self-center text-6xl md:text-8xl lg:text-9xl text-center w-full text-white font-bold"
+        className="justify-self-center my-80 text-6xl md:text-8xl lg:text-9xl text-center w-full text-white font-bold"
       >
         RECENT <span className="font-outline-2-white text-primary">WORK</span>
       </motion.span>
+
       <div className="flex gap-40 my-20 items-center flex-col px-5 md:px-20">
         <Project />
         <Project />

@@ -10,6 +10,10 @@ import imageRevealVertexShader from "../shaders/vertex.glsl";
 
 interface RevealImageProps {
   imageTexture: string;
+  meshRef?: React.RefObject<THREE.Mesh>;
+  rotationZ?: number;
+
+  positionX?: any;
 }
 
 const ImageRevealMaterial = shaderMaterial(
@@ -36,7 +40,12 @@ declare global {
 
 extend({ ImageRevealMaterial });
 
-const RevealImage: FC<RevealImageProps> = ({ imageTexture }) => {
+const RevealImage: FC<RevealImageProps> = ({
+  imageTexture,
+  meshRef,
+  positionX,
+  rotationZ,
+}) => {
   const materialRef = useRef<
     ShaderMaterial & { uTexture: THREE.Texture; uTime: any; uProgress: any }
   >(null);
@@ -48,7 +57,7 @@ const RevealImage: FC<RevealImageProps> = ({ imageTexture }) => {
     }
   });
   const { width, height } = texture.image;
-  const scale = useAspect(width, height, 0.25);
+  const scale = useAspect(width, height, 0.6);
 
   useFrame(({ clock }) => {
     if (materialRef.current) {
@@ -60,9 +69,15 @@ const RevealImage: FC<RevealImageProps> = ({ imageTexture }) => {
   const { revealProgress } = useControls({
     revealProgress: { value: 0, min: 0, max: 1 },
   });
+  const xShift = positionX;
 
   return (
-    <mesh scale={scale}>
+    <mesh
+      position={[xShift ?? 0, 0, 0]}
+      rotation-z={rotationZ ?? 0}
+      ref={meshRef}
+      scale={8}
+    >
       <planeGeometry args={[1, 1, 32, 32]} />
       <imageRevealMaterial attach="material" ref={materialRef} />
     </mesh>
