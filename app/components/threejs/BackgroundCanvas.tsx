@@ -6,7 +6,10 @@ type Props = {};
 
 const BackgroundCanvas = (props: Props) => {
   return (
-    <Canvas gl={{ alpha: false, antialias: false }} className="!fixed inset-0">
+    <Canvas
+      gl={{ alpha: false, antialias: false }}
+      className="absolute inset-0"
+    >
       <OrthographicCamera />
       <BackdropPlane />
     </Canvas>

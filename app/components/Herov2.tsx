@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import SplitType from "split-type";
 import { useMounted } from "../hooks/useMounted";
+import BackgroundCanvas from "./threejs/BackgroundCanvas";
 const Herov2 = () => {
   const mounted = useMounted();
   if (mounted) {
@@ -30,7 +31,10 @@ const Herov2 = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="h-screen p-8 overflow-hidden flex items-end justify-between">
+      <div className="absolute w-screen h-screen">
+        <BackgroundCanvas />
+      </div>
+      <div className="h-screen p-8 relative overflow-hidden flex items-end justify-between">
         <h1
           id="heroTitle"
           className="md:leading-[12rem] align-top font-bold text-7xl md:text-[15rem]"
