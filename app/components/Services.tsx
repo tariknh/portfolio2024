@@ -7,6 +7,13 @@ import {
 } from "motion/react";
 import { useEffect, useRef } from "react";
 import Card from "./Card";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+
 
 const Services = () => {
   const container = useRef(null);
@@ -53,7 +60,7 @@ const Services = () => {
           </motion.h2>
         </div>
 
-        {[
+        {/* {[
           ...Array(4).map((_, index) => (
             <Card
               key={index}
@@ -63,10 +70,62 @@ const Services = () => {
               backText="Your card details will appear here"
             />
           )),
-        ]}
+        ]} */}
+       
+
+        <UnvealSection/>
+      
       </div>
     </div>
   );
 };
 
+const UnvealSection = () => {
+
+  const container = useRef(null);
+  const tl = useRef<gsap.core.Timeline | null>(null);
+
+  useGSAP(() => {
+    
+    tl.current = gsap
+      .timeline(
+        {
+          scrollTrigger: {
+            trigger: container.current,
+            pin: true,
+            scrub: 1,
+            start: "top 20%"
+          }
+        }
+      )
+      .to(".topLeft", {
+        xPercent: -100,
+        
+      },">")
+      .to(".topRight", {
+        xPercent: 100
+      },">")
+      .to(".bottomFull", {
+        yPercent: 100
+      },">");
+  }, { scope: container });
+
+  return (
+    <section ref={container} className="bg-secondary h-screen mt-40 grid grid-cols-2 grid-rows-2">
+      <div className="flex p-12 bg-primary topLeft flex-col gap-2">
+        <h2 className="text-4xl">Web Design</h2>
+        <p className="text-zinc-400 font-thin text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo numquam accusantium natus at tempore quibusdam accusamus culpa ratione iure quasi?</p>
+      </div>
+      <div className="flex p-12 bg-primary topRight flex-col gap-2">
+        <h2 className="text-4xl">Brand Identity</h2>
+        <p className="text-zinc-400 font-thin text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo numquam accusantium natus at tempore quibusdam accusamus culpa ratione iure quasi?</p>
+      </div>
+      <div className="col-span-2 p-12 bg-primary bottomFull flex flex-col gap-2">
+        <h2 className="text-4xl">Web Development</h2>
+        <p className="text-zinc-400 font-thin text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo numquam accusantium natus at tempore quibusdam accusamus culpa ratione iure quasi?</p>
+      </div>
+    </section>
+  )
+}
+ 
 export default Services;

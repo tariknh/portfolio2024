@@ -31,19 +31,19 @@ const Herov2 = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="absolute w-screen h-screen">
+      <div className="absolute w-screen h-screen z-5">
         <BackgroundCanvas />
       </div>
-      <div className="h-screen p-8 relative overflow-hidden flex items-end justify-between">
+      <div className=" h-screen pointer-events-none p-8 relative overflow-hidden flex items-end justify-between">
         <h1
           id="heroTitle"
-          className="md:leading-[12rem] align-top font-bold text-7xl md:text-[15rem]"
+          className="text-background md:leading-[12rem] align-top font-bold text-7xl md:text-[15rem]"
         >
           tarik
         </h1>
         <h2
           id="heroSubTitle"
-          className="overflow-hidden h-fit align-top relative md:text-3xl text-sm text-right text-balance max-w-xl"
+          className="text-background overflow-hidden h-fit align-top relative md:text-3xl text-sm text-right text-balance max-w-xl"
         >
           is a creative web developer based in Norway
         </h2>

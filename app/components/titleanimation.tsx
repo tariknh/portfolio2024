@@ -38,7 +38,7 @@ const Fx2TitleAnimation = () => {
               trigger: titleRef.current,
               start: "center bottom+=50%",
               end: "bottom top+=40%",
-              scrub: true,
+              scrub: false,
             },
           }
         );

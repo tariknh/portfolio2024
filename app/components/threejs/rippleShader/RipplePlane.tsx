@@ -4,8 +4,6 @@ import {
   type ShaderMaterialProps,
   useFrame,
   useThree,
-  
- 
 } from "@react-three/fiber";
 import { useControls } from "leva";
 import { FC, useRef } from "react";
@@ -43,7 +41,8 @@ const BackdropPlaneShader = shaderMaterial(
 
 extend({ BackdropPlaneShader });
 
-const BackdropPlane: FC = () => {
+const RipplePlane: FC = () => {
+  
   const texture = useTexture(textureImg.src)
   const { viewport } = useThree();
   const previousMouse = useRef(new Vector2());
@@ -59,22 +58,15 @@ const BackdropPlane: FC = () => {
 
   useFrame(({ clock, pointer }) => {
     if (!shader.current) return;
-
-    targetMousePosition.current.set(pointer.x, pointer.y)
-
+  
+    // Normalize pointer coordinates
     const currentMouse = new Vector2(
-      (pointer.x + 1) / 2,
+      (pointer.x + 1) / 2, // Normalize to [0, 1]
       (pointer.y + 1) / 2
     );
-
-    currentMouse.x += (targetMousePosition.current.x - currentMouse.x) * easeFactor;
-    currentMouse.y += (targetMousePosition.current.y - currentMouse.y) * easeFactor;
-
-  
   
     // Set uniforms
     shader.current.uTime = clock.elapsedTime;
-    shader.current.uNoiseModifier = noiseModifier;
     shader.current.uMouse!.set(currentMouse.x, currentMouse.y);
     shader.current.uPrevMouse!.set(previousMouse.current.x, previousMouse.current.y);
   
@@ -107,4 +99,4 @@ declare global {
   }
 }
 
-export default BackdropPlane;
+export default RipplePlane;

@@ -1,6 +1,7 @@
 import { OrthographicCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import BackdropPlane from "./backdropPlane/backdropPlane";
+import RipplePlane from "./rippleShader/RipplePlane";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ const BackgroundCanvas = (props: Props) => {
       className="absolute inset-0"
     >
       <OrthographicCamera />
-      <BackdropPlane />
+      <RipplePlane/>
     </Canvas>
   );
 };
