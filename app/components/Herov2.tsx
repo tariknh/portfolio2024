@@ -35,15 +35,15 @@ const Herov2 = () => {
         <BackgroundCanvas />
       </div>
       <div className=" h-screen pointer-events-none p-8 relative overflow-hidden flex items-end justify-between">
-        <h1
+        {/* <h1
           id="heroTitle"
-          className="text-background md:leading-[12rem] align-top font-bold text-7xl md:text-[15rem]"
+          className="text-background md:leading-[12rem] align-top font-bold text-7xl md:text-[14rem]"
         >
           tarik
-        </h1>
+        </h1> */}
         <h2
           id="heroSubTitle"
-          className="text-background overflow-hidden h-fit align-top relative md:text-3xl text-sm text-right text-balance max-w-xl"
+          className="text-background overflow-hidden h-fit align-top relative md:text-3xl text-sm text-left text-balance max-w-xl"
         >
           is a creative web developer based in Norway
         </h2>

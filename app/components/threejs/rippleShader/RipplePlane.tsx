@@ -11,6 +11,10 @@ import { Color, ShaderMaterial, Texture, Vector2 } from "three";
 import fragmentShader from "./backdropPlane.frag";
 import vertexShader from "./backdropPlane.vert";
 import textureImg from "./textureImg.jpg"
+import { createTextTexture } from "../textShader/TextShader";
+import { Unbounded } from "next/font/google";
+
+const unbounded = Unbounded({ subsets: ["latin"] });
 type Props = {};
 type Uniforms = {
   uAspectRatio: number;
@@ -41,8 +45,9 @@ const BackdropPlaneShader = shaderMaterial(
 
 extend({ BackdropPlaneShader });
 
+
+
 const RipplePlane: FC = () => {
-  
   const texture = useTexture(textureImg.src)
   const { viewport } = useThree();
   const previousMouse = useRef(new Vector2());
@@ -56,6 +61,14 @@ const RipplePlane: FC = () => {
   const targetMousePosition = useRef(new Vector2(0.0, 0.0));
   const easeFactor = 0.02
 
+  const newTexture = createTextTexture(
+    "Tarik",
+    "CustomFont",
+    1000,
+    "#121212",
+  )
+
+
   useFrame(({ clock, pointer }) => {
     if (!shader.current) return;
   
@@ -64,6 +77,11 @@ const RipplePlane: FC = () => {
       (pointer.x + 1) / 2, // Normalize to [0, 1]
       (pointer.y + 1) / 2
     );
+  shader.current.uniforms.uTexture.value = newTexture;
+
+
+   
+
   
     // Set uniforms
     shader.current.uTime = clock.elapsedTime;

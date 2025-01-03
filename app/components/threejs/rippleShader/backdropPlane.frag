@@ -18,7 +18,7 @@ void main() {
     float distanceFromMouse = distance(vUv, rippleCenter);
 
     // Ripple effect calculation (sine wave applied based on distance from the mouse)
-    float ripple = 0.03 * sin(30.0 * distanceFromMouse - uTime * 2.0) / distanceFromMouse;
+    float ripple = 0.03 * sin(20.0 * distanceFromMouse - uTime * 2.0) / distanceFromMouse;
 
     // Adjust UV coordinates to apply the ripple distortion
     uv.x += ripple * 0.1; // Distort the UVs horizontally

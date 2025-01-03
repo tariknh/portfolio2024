@@ -67,7 +67,7 @@ const RevealImage: FC<RevealImageProps> = ({
   });
 
   const { revealProgress } = useControls({
-    revealProgress: { value: 0, min: 0, max: 1 },
+    revealProgress: { value: .8, min: 0, max: 1 },
   });
   const xShift = positionX;
 

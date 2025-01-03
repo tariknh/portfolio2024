@@ -94,19 +94,20 @@ const UnvealSection = () => {
             trigger: container.current,
             pin: true,
             scrub: 1,
-            start: "top 20%"
+            start: "top top"
           }
         }
       )
       .to(".topLeft", {
-        xPercent: -100,
+        xPercent: -120,
         
       },">")
       .to(".topRight", {
-        xPercent: 100
+        xPercent: 120
       },">")
       .to(".bottomFull", {
-        yPercent: 100
+        yPercent: 120,
+        autoAlpha: 0
       },">");
   }, { scope: container });
 
@@ -120,7 +121,7 @@ const UnvealSection = () => {
         <h2 className="text-4xl">Brand Identity</h2>
         <p className="text-zinc-400 font-thin text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo numquam accusantium natus at tempore quibusdam accusamus culpa ratione iure quasi?</p>
       </div>
-      <div className="col-span-2 p-12 bg-primary bottomFull flex flex-col gap-2">
+      <div className="col-span-2 p-12 bg-primary bottomFull -z-20 flex flex-col gap-2">
         <h2 className="text-4xl">Web Development</h2>
         <p className="text-zinc-400 font-thin text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo numquam accusantium natus at tempore quibusdam accusamus culpa ratione iure quasi?</p>
       </div>
