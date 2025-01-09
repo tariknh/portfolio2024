@@ -67,7 +67,7 @@ const Project = () => {
         className="left will-change-transform max-w-lg md:max-w-none gap-2 flex flex-col justify-center"
       >
         <h2 className="text-xl md:text-6xl font-bold">Lofothuset</h2>
-        <h2 className="text-xs text-pretty font-thin mb-6 text-zinc-400 text-end">
+        <h2 className="text-xs text-pretty font-thin mb-6 text-zinc-400 sm:text-end">
           Branding, Marketing, Design
         </h2>
         {/* <Button className="w-40" size={"short"} variant={"outline"}>

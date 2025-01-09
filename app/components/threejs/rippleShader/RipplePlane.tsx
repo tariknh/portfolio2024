@@ -6,13 +6,13 @@ import {
   useThree,
 } from "@react-three/fiber";
 import { useControls } from "leva";
+import { Unbounded } from "next/font/google";
 import { FC, useRef } from "react";
 import { Color, ShaderMaterial, Texture, Vector2 } from "three";
+import { createTextTexture } from "../textShader/TextShader";
 import fragmentShader from "./backdropPlane.frag";
 import vertexShader from "./backdropPlane.vert";
-import textureImg from "./textureImg.jpg"
-import { createTextTexture } from "../textShader/TextShader";
-import { Unbounded } from "next/font/google";
+import textureImg from "./textureImg.jpg";
 
 const unbounded = Unbounded({ subsets: ["latin"] });
 type Props = {};
@@ -35,7 +35,7 @@ const INITIAL_UNIFORMS: Uniforms = {
   uLightColor: new Color("#3CA6A6"),
   uDarkColor: new Color("#034159"),
   uNoiseModifier: 5,
-  uTexture: null
+  uTexture: null,
 };
 const BackdropPlaneShader = shaderMaterial(
   INITIAL_UNIFORMS,
@@ -45,10 +45,8 @@ const BackdropPlaneShader = shaderMaterial(
 
 extend({ BackdropPlaneShader });
 
-
-
 const RipplePlane: FC = () => {
-  const texture = useTexture(textureImg.src)
+  const texture = useTexture(textureImg.src);
   const { viewport } = useThree();
   const previousMouse = useRef(new Vector2());
 
@@ -59,35 +57,28 @@ const RipplePlane: FC = () => {
   });
 
   const targetMousePosition = useRef(new Vector2(0.0, 0.0));
-  const easeFactor = 0.02
+  const easeFactor = 0.02;
 
-  const newTexture = createTextTexture(
-    "Tarik",
-    "CustomFont",
-    1000,
-    "#121212",
-  )
-
+  const newTexture = createTextTexture("Tarik", "CustomFont", 1000, "#121212");
 
   useFrame(({ clock, pointer }) => {
     if (!shader.current) return;
-  
+
     // Normalize pointer coordinates
     const currentMouse = new Vector2(
       (pointer.x + 1) / 2, // Normalize to [0, 1]
       (pointer.y + 1) / 2
     );
-  shader.current.uniforms.uTexture.value = newTexture;
+    shader.current.uniforms.uTexture.value = newTexture;
 
-
-   
-
-  
     // Set uniforms
     shader.current.uTime = clock.elapsedTime;
     shader.current.uMouse!.set(currentMouse.x, currentMouse.y);
-    shader.current.uPrevMouse!.set(previousMouse.current.x, previousMouse.current.y);
-  
+    shader.current.uPrevMouse!.set(
+      previousMouse.current.x,
+      previousMouse.current.y
+    );
+
     // Update previous mouse for the next frame
     previousMouse.current.copy(currentMouse);
   });

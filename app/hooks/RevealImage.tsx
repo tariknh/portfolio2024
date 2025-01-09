@@ -4,7 +4,7 @@ import { extend, ShaderMaterialProps, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { FC, useRef } from "react";
 import * as THREE from "three";
-import { ShaderMaterial } from "three";
+import { ShaderMaterial, Vector2 } from "three";
 import imageRevealFragmentShader from "../shaders/fragment.glsl";
 import imageRevealVertexShader from "../shaders/vertex.glsl";
 
@@ -21,6 +21,8 @@ const ImageRevealMaterial = shaderMaterial(
     uTexture: new THREE.Texture(),
     uProgress: 0,
     uTime: 0,
+    uMouse: new Vector2(),
+    uPrevMouse: new Vector2(),
   },
   imageRevealVertexShader,
   imageRevealFragmentShader,
@@ -34,6 +36,8 @@ declare global {
     interface IntrinsicElements {
       imageRevealMaterial: ShaderMaterialProps;
       uTexture: THREE.Texture;
+      uMouse: Vector2;
+      uPrevMouse: Vector2;
     }
   }
 }
@@ -47,8 +51,17 @@ const RevealImage: FC<RevealImageProps> = ({
   rotationZ,
 }) => {
   const materialRef = useRef<
-    ShaderMaterial & { uTexture: THREE.Texture; uTime: any; uProgress: any }
+    ShaderMaterial & {
+      uTexture: THREE.Texture;
+      uTime: any;
+      uProgress: any;
+      uMouse: any;
+      uPrevMouse: any;
+      uAspect: any;
+    }
   >(null);
+
+  const previousMouse = useRef(new Vector2());
 
   // LOADING TEXTURE & HANDLING ASPECT RATIO
   const texture = useTexture(imageTexture, (loadedTexture) => {
@@ -59,15 +72,32 @@ const RevealImage: FC<RevealImageProps> = ({
   const { width, height } = texture.image;
   const scale = useAspect(width, height, 0.6);
 
-  useFrame(({ clock }) => {
+  const canvasWidth = window?.innerWidth;
+  const canvasHeight = window?.innerHeight;
+
+  useFrame(({ clock, pointer }) => {
     if (materialRef.current) {
       materialRef.current.uTime = clock.elapsedTime;
       materialRef.current.uProgress = revealProgress;
+      materialRef.current.uAspect = canvasWidth / canvasHeight;
+
+      const currentMouse = new Vector2(
+        (pointer.x + 1) / 2, // Normalize to [0, 1]
+        (pointer.y + 1) / 2
+      );
+
+      materialRef.current.uMouse.set(currentMouse.x, currentMouse.y);
+      materialRef.current.uPrevMouse.set(
+        previousMouse.current.x,
+        previousMouse.current.y
+      );
+
+      previousMouse.current.copy(currentMouse);
     }
   });
 
   const { revealProgress } = useControls({
-    revealProgress: { value: .8, min: 0, max: 1 },
+    revealProgress: { value: 0.6, min: 0, max: 1 },
   });
   const xShift = positionX;
 
