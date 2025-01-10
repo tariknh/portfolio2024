@@ -1,7 +1,6 @@
 "use client";
 import { shaderMaterial, useAspect, useTexture } from "@react-three/drei";
 import { extend, ShaderMaterialProps, useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
 import { FC, useRef } from "react";
 import * as THREE from "three";
 import { ShaderMaterial, Vector2 } from "three";
@@ -78,7 +77,8 @@ const RevealImage: FC<RevealImageProps> = ({
   useFrame(({ clock, pointer }) => {
     if (materialRef.current) {
       materialRef.current.uTime = clock.elapsedTime;
-      materialRef.current.uProgress = revealProgress;
+      // materialRef.current.uProgress = revealProgress;
+      materialRef.current.uProgress = 0.6;
       materialRef.current.uAspect = canvasWidth / canvasHeight;
 
       const currentMouse = new Vector2(
@@ -96,9 +96,9 @@ const RevealImage: FC<RevealImageProps> = ({
     }
   });
 
-  const { revealProgress } = useControls({
-    revealProgress: { value: 0.6, min: 0, max: 1 },
-  });
+  // const { revealProgress } = useControls({
+  //   revealProgress: { value: 0.6, min: 0, max: 1 },
+  // });
   const xShift = positionX;
 
   return (

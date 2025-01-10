@@ -23,7 +23,7 @@ const Project = () => {
         .timeline({
           scrollTrigger: {
             trigger: left.current,
-            markers: true,
+            markers: false,
             scrub: 0.5,
             start: "top bottom",
             end: "+=600",
@@ -98,7 +98,7 @@ const UnderHero = ({ scrollYProgress }: any) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
   return (
-    <div className="bg-primary w-full grid pt-20 gap-20">
+    <div className="font-editorial bg-primary w-full grid pt-20 gap-20">
       <motion.span
         animate={{
           y: isInView ? "0%" : "50%",
@@ -108,7 +108,10 @@ const UnderHero = ({ scrollYProgress }: any) => {
         ref={ref}
         className="justify-self-center my-80 text-6xl md:text-8xl lg:text-9xl text-center w-full text-white font-bold"
       >
-        RECENT <span className="font-outline-2-white text-primary">WORK</span>
+        RECENT{" "}
+        <span className="font-outline-2-white font-editorial text-primary">
+          WORK
+        </span>
       </motion.span>
 
       <div className="flex gap-40 my-20 items-center flex-col px-5 md:px-20">

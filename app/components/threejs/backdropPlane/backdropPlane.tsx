@@ -4,15 +4,12 @@ import {
   type ShaderMaterialProps,
   useFrame,
   useThree,
-  
- 
 } from "@react-three/fiber";
-import { useControls } from "leva";
 import { FC, useRef } from "react";
 import { Color, ShaderMaterial, Texture, Vector2 } from "three";
 import fragmentShader from "./backdropPlane.frag";
 import vertexShader from "./backdropPlane.vert";
-import textureImg from "./textureImg.jpg"
+import textureImg from "./textureImg.jpg";
 type Props = {};
 type Uniforms = {
   uAspectRatio: number;
@@ -33,7 +30,7 @@ const INITIAL_UNIFORMS: Uniforms = {
   uLightColor: new Color("#3CA6A6"),
   uDarkColor: new Color("#034159"),
   uNoiseModifier: 5,
-  uTexture: null
+  uTexture: null,
 };
 const BackdropPlaneShader = shaderMaterial(
   INITIAL_UNIFORMS,
@@ -44,40 +41,40 @@ const BackdropPlaneShader = shaderMaterial(
 extend({ BackdropPlaneShader });
 
 const BackdropPlane: FC = () => {
-  const texture = useTexture(textureImg.src)
+  const texture = useTexture(textureImg.src);
   const { viewport } = useThree();
   const previousMouse = useRef(new Vector2());
 
   const shader = useRef<ShaderMaterial & Partial<Uniforms>>(null);
 
-  const { noiseModifier } = useControls({
-    noiseModifier: { value: 5, min: 0, max: 25 },
-  });
+  // const { noiseModifier } = useControls({
+  //   noiseModifier: { value: 5, min: 0, max: 25 },
+  // });
 
   const targetMousePosition = useRef(new Vector2(0.0, 0.0));
-  const easeFactor = 0.02
+  const easeFactor = 0.02;
 
   useFrame(({ clock, pointer }) => {
     if (!shader.current) return;
 
-    targetMousePosition.current.set(pointer.x, pointer.y)
+    targetMousePosition.current.set(pointer.x, pointer.y);
 
-    const currentMouse = new Vector2(
-      (pointer.x + 1) / 2,
-      (pointer.y + 1) / 2
-    );
+    const currentMouse = new Vector2((pointer.x + 1) / 2, (pointer.y + 1) / 2);
 
-    currentMouse.x += (targetMousePosition.current.x - currentMouse.x) * easeFactor;
-    currentMouse.y += (targetMousePosition.current.y - currentMouse.y) * easeFactor;
+    currentMouse.x +=
+      (targetMousePosition.current.x - currentMouse.x) * easeFactor;
+    currentMouse.y +=
+      (targetMousePosition.current.y - currentMouse.y) * easeFactor;
 
-  
-  
     // Set uniforms
     shader.current.uTime = clock.elapsedTime;
-    shader.current.uNoiseModifier = noiseModifier;
+    // shader.current.uNoiseModifier = noiseModifier;
     shader.current.uMouse!.set(currentMouse.x, currentMouse.y);
-    shader.current.uPrevMouse!.set(previousMouse.current.x, previousMouse.current.y);
-  
+    shader.current.uPrevMouse!.set(
+      previousMouse.current.x,
+      previousMouse.current.y
+    );
+
     // Update previous mouse for the next frame
     previousMouse.current.copy(currentMouse);
   });

@@ -20,7 +20,7 @@ export default function Home() {
       <Herov2 />
       <UnderHero scrollYProgress={scrollYProgress} />
       <Services />
-      <div className="fixed aspect-video h-[200px] -z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed showReel overflow-hidden aspect-video h-[50px] -z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]">
         <Image
           fill
           className="object-cover"
@@ -28,7 +28,7 @@ export default function Home() {
           alt={""}
         />
       </div>
-      <div className="h-[500vh] bg-transparent"></div>
+      <div className="h-[200vh] bg-transparent"></div>
       {/* <About /> */}
       <Footer />
     </main>

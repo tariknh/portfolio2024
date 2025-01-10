@@ -5,7 +5,6 @@ import {
   useFrame,
   useThree,
 } from "@react-three/fiber";
-import { useControls } from "leva";
 import { Unbounded } from "next/font/google";
 import { FC, useRef } from "react";
 import { Color, ShaderMaterial, Texture, Vector2 } from "three";
@@ -52,9 +51,9 @@ const RipplePlane: FC = () => {
 
   const shader = useRef<ShaderMaterial & Partial<Uniforms>>(null);
 
-  const { noiseModifier } = useControls({
-    noiseModifier: { value: 5, min: 0, max: 25 },
-  });
+  // const { noiseModifier } = useControls({
+  //   noiseModifier: { value: 5, min: 0, max: 25 },
+  // });
 
   const targetMousePosition = useRef(new Vector2(0.0, 0.0));
   const easeFactor = 0.02;
