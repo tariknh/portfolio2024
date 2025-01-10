@@ -34,8 +34,8 @@
 }
 
 @font-face {
-  font-family: 'CustomFont';
-  src: url('/fonts/CustomFont.otf') format('opentype');
+  font-family: "CustomFont";
+  src: url("/fonts/CustomFont.otf") format("opentype");
 }
 
 @layer base {

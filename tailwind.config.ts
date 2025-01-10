@@ -12,8 +12,6 @@ const config: Config = {
       fontFamily: {
         editorial: ["var(--font-editorial)"],
         sans: ["var(--font-montreal)"],
-        inter: ["Inter", "sans-serif"],
-        unbounded: ["Unbounded", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

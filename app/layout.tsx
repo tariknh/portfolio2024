@@ -10,32 +10,32 @@ const unbounded = Unbounded({ subsets: ["latin"] });
 const ppEditorialOld = localFont({
   src: [
     {
-      path: "/fonts/PPEditorialNew-Regular.otf",
+      path: "./fonts/PPEditorialNew-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "/fonts/PPEditorialNew-Italic.otf",
+      path: "./fonts/PPEditorialNew-Italic.otf",
       weight: "400",
       style: "italic",
     },
     {
-      path: "/fonts/PPEditorialNew-Ultrabold.otf",
+      path: "./fonts/PPEditorialNew-Ultrabold.otf",
       weight: "800",
       style: "normal",
     },
     {
-      path: "/fonts/PPEditorialNew-UltraboldItalic.otf",
+      path: "./fonts/PPEditorialNew-UltraboldItalic.otf",
       weight: "800",
       style: "italic",
     },
     {
-      path: "/fonts/PPEditorialNew-Ultralight.otf",
+      path: "./fonts/PPEditorialNew-Ultralight.otf",
       weight: "200",
       style: "normal",
     },
     {
-      path: "/fonts/PPEditorialNew-UltralightItalic.otf",
+      path: "./fonts/PPEditorialNew-UltralightItalic.otf",
       weight: "200",
       style: "italic",
     },
@@ -45,24 +45,24 @@ const ppEditorialOld = localFont({
 
 const ppNeueMontreal = localFont({
   src: [
-    { path: "/fonts/PPNeueMontreal-Thin.otf", weight: "200", style: "normal" },
-    { path: "/fonts/PPNeueMontreal-Book.otf", weight: "400", style: "normal" },
+    { path: "./fonts/PPNeueMontreal-Thin.otf", weight: "200", style: "normal" },
+    { path: "./fonts/PPNeueMontreal-Book.otf", weight: "400", style: "normal" },
     {
-      path: "/fonts/PPNeueMontreal-Italic.otf",
+      path: "./fonts/PPNeueMontreal-Italic.otf",
       weight: "400",
       style: "italic",
     },
     {
-      path: "/fonts/PPNeueMontreal-Medium.otf",
+      path: "./fonts/PPNeueMontreal-Medium.otf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "/fonts/PPNeueMontreal-SemiBoldItalic.otf",
+      path: "./fonts/PPNeueMontreal-SemiBoldItalic.otf",
       weight: "600",
       style: "italic",
     },
-    { path: "/fonts/PPNeueMontreal-Bold.otf", weight: "700", style: "normal" },
+    { path: "./fonts/PPNeueMontreal-Bold.otf", weight: "700", style: "normal" },
   ],
   variable: "--font-montreal",
 });
@@ -80,7 +80,7 @@ export default function RootLayout({
   return (
     <html className="overflow-x-hidden" lang="en">
       <body
-        className={`${inter.className} ${unbounded.className} ${ppEditorialOld.className} ${ppNeueMontreal.className} font-editorial  w-screen overflow-x-hidden overflow-hidden `}
+        className={`${ppEditorialOld.className} ${ppNeueMontreal.className} font-editorial  w-screen overflow-x-hidden overflow-hidden `}
       >
         <Navbar />
         {children}
