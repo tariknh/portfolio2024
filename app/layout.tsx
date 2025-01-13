@@ -78,10 +78,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="overflow-x-hidden" lang="en">
-      <body
-        className={`${ppEditorialOld.className} ${ppNeueMontreal.className} font-editorial  w-screen overflow-x-hidden overflow-hidden `}
-      >
+    <html
+      className={`${ppEditorialOld.variable} ${ppNeueMontreal.variable}  overflow-x-hidden`}
+      lang="en"
+    >
+      <body className={` w-screen overflow-x-hidden overflow-hidden `}>
         <Navbar />
         {children}
       </body>

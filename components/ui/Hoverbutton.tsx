@@ -75,7 +75,7 @@ export default function HoverButton({ children }: { children: ReactNode }) {
   return (
     <Button
       data-btn="wrap"
-      className="w-40 no-underline hover:no-underline border-white bg-blend-difference"
+      className="w-40 font-sans text-md no-underline hover:no-underline border-white bg-blend-difference"
       size={"short"}
       variant={"outline"}
       ref={wrapRef}

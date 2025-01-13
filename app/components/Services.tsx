@@ -9,6 +9,7 @@ import {
   useInView,
 } from "motion/react";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import useDeviceDetection from "../hooks/useDevice";
 
@@ -46,19 +47,19 @@ const Services = () => {
     <div className="min-h-screen bg-transparent">
       <div
         ref={container}
-        className="text-background flex-col text-5xl md:text-7xl lg:text-9xl  p-12 bg-primary splitSection"
+        className="text-background flex-col text-5xl md:text-7xl lg:text-9xl font-editorial bg-primary splitSection"
       >
-        <div className=" overflow-hidden bg-primary ">
+        <div className=" overflow-hidden bg-primary h-fit p-1  ">
           <motion.h2
             initial={{ opacity: 0, x: -50 }}
             whileInView="onscreen"
-            className=" whati"
+            className=" whati "
           >
             WHAT I
           </motion.h2>
         </div>
-        <div className=" overflow-hidden bg-primary  ">
-          <motion.h2 initial={{ y: -80 }} className=" dobest">
+        <div className=" overflow-hidden bg-primary p-1  ">
+          <motion.h2 initial={{ y: -200 }} className=" dobest">
             DO BEST
           </motion.h2>
         </div>
@@ -128,17 +129,24 @@ const UnvealSection = () => {
         },
         "0" // Start at the same time
       )
-      .to(
-        ".bottomFull",
-        {
-          autoAlpha: 0,
-        },
-        ">" // Start at the same time
-      )
+      // .to(
+      //   ".bottomFull",
+      //   {
+      //     autoAlpha: 0,
+      //   },
+      //   ">" // Start at the same time
+      // )
       .to(
         ".showReel",
         {
           height: device == "Mobile Device" ? "200px" : "500px",
+        },
+        ">" // Start at the same time
+      )
+      .to(
+        ".bottomFull",
+        {
+          autoAlpha: 0,
         },
         ">" // Start at the same time
       );
@@ -161,24 +169,54 @@ const UnvealSection = () => {
       ref={container}
       className=" w-full h-screen mt-40 grid grid-cols-2 grid-rows-2"
     >
-      <div className="flex p-12 bg-primary topLeft flex-col gap-2">
-        <h2 className="text-3xl">Web Design</h2>
-        <p className="text-zinc-400 font-thin text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </p>
+      <div className="flex p-6 bg-background rounded-3xl justify-center text-primary text-center topLeft flex-col gap-2 relative">
+        <span className="absolute font-sans top-7 left-7 text-2xl">(01)</span>
+        <div className="group text-3xl flex flex-col items-center gap-2 md:text-5xl sm:flex-row md:justify-center cursor-default">
+          Web{" "}
+          <div className="group-hover:h-20 transition-all rounded-3xl overflow-hidden duration-300 ease-out relative h-0 aspect-video">
+            <Image
+              fill
+              className="object-cover"
+              src={"/projects/lofothuset.png"}
+              alt={""}
+            />
+          </div>
+          <br className="sm:hidden" /> Design
+        </div>
       </div>
-      <div className="flex p-12 bg-primary topRight flex-col gap-2">
-        <h2 className="text-3xl">Brand Identity</h2>
-        <p className="text-zinc-400 font-thin text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </p>
+      <div className="flex p-6 bg-background rounded-3xl justify-center text-primary relative text-center topRight flex-col gap-2">
+        <span className="absolute font-sans top-7 left-7 text-2xl">(02)</span>
+        <div className="group text-3xl flex flex-col items-center gap-2 md:text-5xl md:justify-center cursor-default">
+          Brand{" "}
+          <div className="group-hover:h-20 transition-all rounded-3xl overflow-hidden duration-300 ease-out relative h-0 aspect-video">
+            <Image
+              fill
+              className="object-cover"
+              src={"/projects/lofothuset.png"}
+              alt={""}
+            />
+          </div>
+          <br className="sm:hidden" /> Identity
+        </div>
       </div>
-      <div className="col-span-2 p-12 bg-primary bottomFull -z-20 flex flex-col gap-2">
+      <div className="flex col-span-2 p-6 bg-background rounded-3xl justify-center text-primary text-center topLeft flex-col gap-2">
+        <span className="absolute font-sans top-7 left-7 text-2xl">(03)</span>
+        <div className="group text-3xl flex flex-col items-center gap-2 md:text-5xl sm:flex-row md:justify-center cursor-default">
+          Web{" "}
+          <div className="group-hover:h-20 transition-all rounded-3xl overflow-hidden duration-300 ease-out relative h-0 aspect-video">
+            <Image
+              fill
+              className="object-cover"
+              src={"/projects/lofothuset.png"}
+              alt={""}
+            />
+          </div>
+          <br className="sm:hidden" /> Development
+        </div>
+      </div>
+      {/* <div className="col-span-2 p-6 bg-background text-primary justify-center rounded-3xl bottomFull  flex flex-col gap-2 text-center">
         <h2 className="text-3xl">Web Development</h2>
-        <p className="text-zinc-400 font-thin text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </p>
-      </div>
+      </div> */}
     </section>
   );
 };

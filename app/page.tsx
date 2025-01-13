@@ -28,7 +28,7 @@ export default function Home() {
           alt={""}
         />
       </div>
-      <div className="h-[200vh] bg-transparent"></div>
+      <div className="h-[150vh] bg-transparent"></div>
       {/* <About /> */}
       <Footer />
     </main>

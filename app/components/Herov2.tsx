@@ -22,10 +22,10 @@ const Herov2 = () => {
       })
       .to(".heroSubWord", {
         y: 0,
-        stagger: 0.1,
-        delay: 0.1,
-        duration: 0.03,
-        ease: "power4.in",
+        stagger: 0.08,
+        delay: 0.01,
+        duration: 0.02,
+        ease: "expo.in",
       });
   }
 

@@ -58,7 +58,12 @@ const RipplePlane: FC = () => {
   const targetMousePosition = useRef(new Vector2(0.0, 0.0));
   const easeFactor = 0.02;
 
-  const newTexture = createTextTexture("Tarik", "CustomFont", 1000, "#121212");
+  const newTexture = createTextTexture(
+    "Tarik",
+    "--font-montreal",
+    1000,
+    "#121212"
+  );
 
   useFrame(({ clock, pointer }) => {
     if (!shader.current) return;

@@ -1,60 +1,61 @@
-import React from 'react'
-import * as THREE from 'three';
-
+import * as THREE from "three";
 
 const TextShader = () => {
-  return (
-    <div>TextShader</div>
-   
-  )
-}
+  return <div>TextShader</div>;
+};
 
-export const createTextTexture = (text:string, font:any, size:any, color:string, fontWeight = 100)=> {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    if(!ctx) return null;
-    const canvasWidth = window.innerWidth * 2;
-    const canvasHeight = window.innerHeight * 2;
+export const createTextTexture = (
+  text: string,
+  font: any,
+  size: any,
+  color: string,
+  fontWeight = 100
+) => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  const canvasWidth = window.innerWidth * 2;
+  const canvasHeight = window.innerHeight * 2;
 
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
 
-    ctx.fillStyle = color || "#121212";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = color || "#121212";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const fontSize = size || Math.floor(canvasWidth * 2)
-    
-    ctx.fillStyle = "#ffffff"
-    ctx.font = `${fontWeight} ${fontSize}px "CustomFont"`
-    ctx.textAlign = "center"
-    ctx.textBaseline = "middle";
+  const fontSize = size || Math.floor(canvasWidth * 2);
 
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = "high";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = `${fontWeight} ${fontSize}px CustomFont `;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
 
-    const textMetrics = ctx?.measureText(text)
-    const textWidth = textMetrics!.width
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
 
-    const scaleFactor = Math.min(1, (canvasWidth*1)/textWidth)
-    const aspectCorrection = canvasWidth / canvasHeight
-    ctx?.setTransform(
-        scaleFactor,
-        0,
-        0,
-        scaleFactor / aspectCorrection,
-        canvasWidth / 2,
-        canvasHeight / 2
-    );
+  const textMetrics = ctx?.measureText(text);
+  const textWidth = textMetrics!.width;
 
-    ctx.strokeStyle = "#1a1a1a";
-    ctx.lineWidth = fontSize * 0.005;
-    for(let i = 0; i<3; i++){
-        ctx?.strokeText(text,0,0);
-    }
+  const scaleFactor = Math.min(1, (canvasWidth * 1) / textWidth);
+  const aspectCorrection = canvasWidth / canvasHeight;
+  ctx?.setTransform(
+    scaleFactor,
+    0,
+    0,
+    scaleFactor / aspectCorrection,
+    canvasWidth / 2,
+    canvasHeight / 2
+  );
 
-    ctx?.fillText(text,0,0);
+  ctx.strokeStyle = "#1a1a1a";
+  ctx.lineWidth = fontSize * 0.005;
+  for (let i = 0; i < 3; i++) {
+    ctx?.strokeText(text, 0, 0);
+  }
 
-    return new THREE.CanvasTexture(canvas);
-}
+  ctx?.fillText(text, 0, 0);
 
-export default TextShader
+  return new THREE.CanvasTexture(canvas);
+};
+
+export default TextShader;

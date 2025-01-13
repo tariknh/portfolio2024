@@ -35,7 +35,11 @@
 
 @font-face {
   font-family: "CustomFont";
-  src: url("/fonts/CustomFont.otf") format("opentype");
+  src: url("/fonts/PPEditorialOld-Regular.otf") format("opentype");
+}
+
+.editorial {
+  font-family: var(--font-editorial);
 }
 
 @layer base {
@@ -119,6 +123,6 @@
   transition: transform 1s;
 }
 .heroSubWord {
-  transform: translateY(315px);
+  transform: translateY(115px);
   transition: transform 1s;
 }
