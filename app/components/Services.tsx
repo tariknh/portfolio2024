@@ -49,7 +49,7 @@ const Services = () => {
         ref={container}
         className="text-background flex-col text-5xl md:text-7xl lg:text-9xl font-editorial bg-primary splitSection"
       >
-        <div className=" overflow-hidden bg-primary h-fit p-1  ">
+        <div className="px-4 md:px-6 lg:px-12 overflow-hidden bg-primary h-fit p-1  ">
           <motion.h2
             initial={{ opacity: 0, x: -50 }}
             whileInView="onscreen"
@@ -199,7 +199,7 @@ const UnvealSection = () => {
           <br className="sm:hidden" /> Identity
         </div>
       </div>
-      <div className="flex col-span-2 p-6 bg-background rounded-3xl justify-center text-primary text-center topLeft flex-col gap-2">
+      <div className="flex col-span-2 p-6 bg-background rounded-3xl justify-center text-primary text-center bottomFull flex-col gap-2">
         <span className="absolute font-sans top-7 left-7 text-2xl">(03)</span>
         <div className="group text-3xl flex flex-col items-center gap-2 md:text-5xl sm:flex-row md:justify-center cursor-default">
           Web{" "}

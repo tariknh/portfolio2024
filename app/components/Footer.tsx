@@ -43,20 +43,20 @@ const Footer = () => {
   return (
     <footer
       ref={container}
-      className="h-screen grid-rows-12 gap-2 bg-primary grid p-6 py-16"
+      className="h-screen grid-rows-12  gap-2 grid p-6 py-16"
     >
-      <motion.div className="h-full relative row-span-12 content-center gap-2 items-center grid grid-rows-3 place-content-center bg-background rounded-2xl">
+      <motion.div className="h-full row-span-10 row-start-2 relative  content-center gap-2 items-center grid grid-rows-3 place-content-center bg-primary text-background rounded-2xl">
         <h1
           id="footerTitle"
-          className="text-center relative overflow-hidden h-fit text-7xl col-start-1 row-start-2 md:text-9xl"
+          className="text-center  font-editorial relative overflow-hidden h-fit p-2 text-7xl col-start-1 row-start-2 md:text-9xl"
         >
           Let’s talk!
         </h1>
-        <MagneticButton className="border-2 row-start-2 row-span-2 col-start-1 self-center justify-self-center text-center grid items-center border-primary p-2 h-36 w-36 text-sm rounded-full">
-          <div className="">GET IN TOUCH</div>
+        <MagneticButton className="border-2 row-start-2 row-span-2 col-start-1 self-center justify-self-center text-center grid items-center border-background p-2 h-36 w-36 text-sm rounded-full">
+          <div>GET IN TOUCH</div>
         </MagneticButton>
       </motion.div>
-      <div className="flex justify-between text-xs text-background row-span-1">
+      <div className="flex justify-between text-xs text-primary row-span-1 row-start-12">
         <Link href={""}>TWITTER / X</Link>
         <Link href={""}>LINKEDIN</Link>
         <Link href={""}>TARIK@TARIK.NO</Link>
