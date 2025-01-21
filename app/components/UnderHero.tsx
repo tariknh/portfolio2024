@@ -112,7 +112,7 @@ const UnderHero = ({ scrollYProgress }: any) => {
       >
         RECENT{" "}
         <span className="font-outline-2-white font-editorial text-primary">
-          WORK
+          WORKS
         </span>
       </motion.span>
 
