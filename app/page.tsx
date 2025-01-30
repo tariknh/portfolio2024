@@ -32,6 +32,7 @@ export default function Home() {
         </div>
         <div className="h-[100vh] bg-transparent"></div>
         {/* <About /> */}
+
         <Footer />
       </main>
     </ReactLenis>

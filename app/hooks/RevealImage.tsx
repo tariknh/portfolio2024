@@ -22,6 +22,7 @@ const ImageRevealMaterial = shaderMaterial(
     uTime: 0,
     uMouse: new Vector2(),
     uPrevMouse: new Vector2(),
+    uAspect: 0,
   },
   imageRevealVertexShader,
   imageRevealFragmentShader,
@@ -79,7 +80,7 @@ const RevealImage: FC<RevealImageProps> = ({
       materialRef.current.uTime = clock.elapsedTime;
       // materialRef.current.uProgress = revealProgress;
       materialRef.current.uProgress = 0.6;
-      materialRef.current.uAspect = canvasWidth / canvasHeight;
+      materialRef.current.uAspect = scale;
 
       const currentMouse = new Vector2(
         (pointer.x + 1) / 2, // Normalize to [0, 1]
@@ -106,9 +107,9 @@ const RevealImage: FC<RevealImageProps> = ({
       position={[xShift ?? 0, 0, 0]}
       rotation-z={rotationZ ?? 0}
       ref={meshRef}
-      scale={8}
+      scale={6}
     >
-      <planeGeometry args={[1, 1, 32, 32]} />
+      <planeGeometry args={[1, 1, 1, 1]} />
       <imageRevealMaterial attach="material" ref={materialRef} />
     </mesh>
   );

@@ -16,14 +16,14 @@ void main()
     // Displace the UV
     vec2 displacedUv = vUv + cnoise(vec3(uv * 5.0, uTime * 0.1));
     // Perlin noise
-    float strength = cnoise(vec3(displacedUv * 5.0, uTime * 0.2 ));
+    float strength = cnoise(vec3(displacedUv * 3.0, uTime * 0.1 ));
 
     // Ripple effect parameters
     vec2 rippleCenter = uMouse; // Normalized mouse coordinates (0 to 1)
     float distanceFromMouse = distance(vUv, rippleCenter);
 
     // Ripple effect calculation (sine wave applied based on distance from the mouse)
-    float ripple = 0.03 * sin(20.0 * distanceFromMouse - uTime * 2.0) / distanceFromMouse;
+    float ripple = 0.03 * sin(10.0 * distanceFromMouse - uTime * 2.0) / distanceFromMouse;
 
     // Adjust UV coordinates to apply the ripple distortion
     uv.x += ripple * 0.1; // Distort the UVs horizontally

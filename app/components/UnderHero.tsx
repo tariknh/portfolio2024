@@ -60,7 +60,7 @@ const Project = () => {
   return (
     <div
       ref={container}
-      className="container flex flex-col-reverse sm:flex-row md:justify-between w-full h-full gap-5 lg:gap-12 text-white"
+      className="container flex flex-col-reverse sm:flex-row md:justify-evenly w-full h-full gap-5 lg:gap-12 text-white"
     >
       <div
         ref={left}
@@ -77,8 +77,8 @@ const Project = () => {
         </Button> */}
         <Hoverbutton>View case</Hoverbutton>
       </div>
-      <div className="right h-40 md:min-h-72 lg:min-h-[40rem] md:min-w-[16rem] rounded-lg overflow-hidden relative w-full">
-        <Canvas className="overflow-visible absolute w-full">
+      <div className="right md:min-h-72 w-[25rem] md:w-[45rem] lg:min-h-[40rem] rounded-lg  relative">
+        <Canvas className="overflow-visible">
           <RevealImage
             meshRef={right}
             positionX={0}
@@ -108,12 +108,9 @@ const UnderHero = ({ scrollYProgress }: any) => {
           transition: { duration: 0.5, ease: "easeInOut" },
         }}
         ref={ref}
-        className="justify-self-center my-80 text-6xl md:text-8xl lg:text-9xl text-center w-full text-white font-bold"
+        className="justify-self-center my-80 text-6xl md:text-8xl lg:text-9xl text-center w-full text-wrap text-white font-medium"
       >
-        RECENT{" "}
-        <span className="font-outline-2-white font-editorial text-primary">
-          WORKS
-        </span>
+        RECENT WORK
       </motion.span>
 
       <div className="flex gap-40 my-20 items-center flex-col px-5 md:px-20">
